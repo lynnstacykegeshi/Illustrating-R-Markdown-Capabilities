@@ -1,0 +1,50 @@
+---
+title: "Illustrating R Notebook Capabilities"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+R Notebook is interactive and more suited for exploratory analysis and immediate feedback. Both R Markdownare based on R Markdown, but R Notebook enhances the experience by allowing live code execution and interactive exploration.
+
+In this notebook, we explore the marathon data from a CSV file. We will visualize the distribution of finish times and compare finish times for different runner types.
+
+First, we load the data and necessary libraries.
+```{r}
+# Load necessary libraries
+library(ggplot2)
+library(dplyr)
+
+# Load the data
+marathon_data <- read.csv("Marathon.csv")
+
+```
+ 
+We then view the first 5 rows just to get a glimpse of what we are working with.
+```{r}
+# View the first few rows of the data
+head(marathon_data)
+```
+
+Now, let's plot a histogram to examine the distribution of marathon finish times across all runners.
+```{r}
+# Basic histogram of Finish Time
+ggplot(marathon_data, aes(x = Finish_Time)) + 
+  geom_histogram(binwidth = 0.5, fill = "skyblue", color = "black", alpha = 0.7) + 
+  labs(title = "Distribution of Finish Times", x = "Finish Time (hours)", y = "Count")
+
+```
+
+Next, we will create a boxplot to compare the finish times across different runner types. This will help us understand the variations in performance for "Professional," "First-Timer," and "Frequent" runners.
+
+```{r}
+
+# Boxplot to compare Finish Time across different Types
+ggplot(marathon_data, aes(x = Type, y = Finish_Time, fill = Type)) + 
+  geom_boxplot() + 
+  labs(title = "Finish Time by Type", x = "Runner Type", y = "Finish Time (hours)") + 
+  theme_minimal()
+
+```
+  
+  

@@ -1,0 +1,29 @@
+---
+title: "Mutually Agreed Procedures (MAP)"
+author: "Lynnstacy Kegeshi"
+output:
+  powerpoint_presentation: default
+  pdf_document: default
+---
+
+
+## Slide 1: What is MAP?
+
+Mutually Agreed Procedures (MAP) is a process through which two or more countries' tax authorities work together to resolve tax disputes and avoid double taxation.
+
+## Slide 2: MAP Process Steps
+
+1. **Initiation**: The taxpayer requests assistance from their tax authority.
+2. **Negotiation**: The tax authorities work to resolve the issue.
+3. **Agreement**: A final agreement is made between the countries involved.
+
+## Slide 3: Benefits of MAP
+
+- Reduces the risk of double taxation.
+- Improves consistency in tax treatment.
+- Promotes international cooperation between tax authorities.
+
+## Slide 4: Example of MAP Usage
+
+A company based in Kenya disputes its tax treatment in the U.S., and both tax authorities agree on a resolution through MAP, ensuring the company is not taxed twice on the same income.
+

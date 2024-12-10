@@ -1,0 +1,82 @@
+---
+title: "Interactive Graphics with Shiny Widgets"
+output: 
+  pdf_document: default
+  html_notebook: default
+runtime: shiny
+---
+
+## Introduction
+
+In this example, we demonstrate how to use Shiny widgets to interactively explore marathon finish time data. You will be able to select a runner type and adjust the histogram bin width dynamically.
+
+## Load Libraries and Data
+
+First, we load the necessary libraries and the marathon data.
+
+```{r}
+# Load the necessary libraries
+library(shiny)
+library(ggplot2)
+library(dplyr)
+
+# Load the marathon data
+marathon_data <- read.csv("Marathon.csv")
+```
+
+The first visualization is a histogram that displays the distribution of finish times for all runners. I implemented an interactive slider that allows the user to adjust the bin width of the histogram, which helps in examining the distribution at different levels.
+
+```{r}
+# Define UI for the application
+ui <- fluidPage(
+  
+  # Title
+  titlePanel("Interactive Marathon Finish Times"),
+  
+  # Dropdown to select the runner type
+  selectInput("runner_type", "Select Runner Type:",
+              choices = c("Professional", "First-Timer", "Frequents")),
+  
+  # Slider to adjust bin width for the histogram
+  sliderInput("bin_width", "Select Bin Width:",
+              min = 0.1, max = 1, value = 0.5, step = 0.1),
+  
+  # Plot output
+  plotOutput("distPlot")
+)
+
+```
+
+Next, we define the server logic to make sure the app responds to the user's selections. The key part here is the reactive expression that updates the data based on the selected runner type and the slider value for bin width.
+
+```{r}
+# Define server logic for the application
+server <- function(input, output) {
+  
+  # Reactive expression to filter the data based on selected runner type
+  filtered_data <- reactive({
+    if (input$runner_type == "All") {
+      marathon_data
+    } else {
+      filter(marathon_data, Type == input$runner_type)
+    }
+  })
+  
+  # Render the histogram dynamically based on the input
+  output$distPlot <- renderPlot({
+    data <- filtered_data()
+    
+    ggplot(data, aes(x = Finish_Time)) +
+      geom_histogram(binwidth = input$bin_width, fill = "skyblue", color = "black", alpha = 0.7) +
+      labs(title = paste("Finish Times for", input$runner_type, "Runners"),
+           x = "Finish Time (hours)", y = "Count") +
+      theme_minimal()
+  })
+}
+
+# Run the Shiny app
+shinyApp(ui = ui, server = server)
+
+```
+
+Shiny allows us to build interactive features in R Markdown, providing real-time feedback and making our analysis more dynamic.

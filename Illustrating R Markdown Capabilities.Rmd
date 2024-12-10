@@ -1,0 +1,82 @@
+---
+title: "Illustrating R Markdown Capabilities - SDS 6103 -LK"
+author: "Lynnstacy Kegeshi"
+date: "2024-10-25"
+output: 
+        pdf_document: 
+          toc: yes
+        html_document:
+          toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Illustration of R Markdown Features
+
+We illusrate R Markdown Capabilities in the below texts.
+
+##  Illustrating Inline elements
+Hello! I am a passionate **software developer** with a background in *computer science* and *mathematics*. I graduated with **first-class honors** in Actuarial Science from the *University of Nairobi*. Currently, I am working as a **tax advisor** at *Ernst & Young Kenya*, where I apply my knowledge in data analysis and machine learning to help solve complex challenges.
+
+I have a strong interest in the intersection of **technology** and **art**, and I enjoy exploring innovative ways to use **data science** and **AI** in solving real-world problems. I am also passionate about keeping up to date with the latest **technology trends**.
+
+##  Illustrating Block-level elements
+
+In my free time, I enjoy:
+- Reading and writing
+- Catching up on the latest medical dramas.
+- Crocheting 
+
+My favourite quote that guides my daily life is:
+
+> "Never be so kind. You forget to be clever. Never be so clever. You forget to be kind ·"
+>
+> --- Taylor Swift
+
+# Illustrating Mathematical Expressions
+Once in a while we have to write some mathematical expressions
+
+1.The formular can be left inside the textto look as follows $x + y = 30$
+2. If we want the formular to be on the next line we can: $$x+y-30$$
+3. We can also use latex notation to present mathematical formulation.
+$$\int_{-\infty}^{\infty} \frac{e^x}{3x}+4x^2 \, dx$$
+# Including figures from the computer
+With the emergence of ChatGPT, i sometimes use it to generate images for creative inspiration. See below a sunset image i generated using ChatGPT.
+
+```{r}
+knitr::include_graphics("Sunset.jpg")
+
+```
+
+We can also include graphs in or markdown
+
+```{r}
+
+par(mar = c(4, 4, 0.1, 0.1))
+plot(pressure, pch = 19, type = "b")
+plot(cars, pch = 19)
+```
+
+# R Notebook
+R Notebook is interactive and more suited for exploratory analysis and immediate feedback. Both R Markdownare based on R Markdown, but R Notebook enhances the experience by allowing live code execution and interactive exploration.
+
+In this notebook, we explore the marathon data from a CSV file. We will visualize the distribution of finish times and compare finish times for different runner types.
+
+First, we load the data and necessary libraries.
+```{r}
+# Load necessary libraries
+library(ggplot2)
+library(dplyr)
+
+# Load the data
+marathon_data <- read.csv("Marathon.csv")
+
+```
+ 
+We then view the first 5 rows just to get a glimpse of what we are working with.
+```{r}
+# View the first few rows of the data
+head(marathon_data)
+```
